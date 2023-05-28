@@ -1,11 +1,10 @@
-# Bitcoin_Pred_022023
-Capstone project
- ![image](https://github.com/drykvf/Bitcoin_Pred_022023/assets/121190573/bec33cef-98b2-43ad-b46a-2099fafe8db5)
- 
 # BITCOIN PRICE FORECASTING
 # TIME SERIES APPROACH
 
-This project aims to forecast future bitcoin price based on historical bitcoin price data by time series approach. In time series analysis, time is a crucial variable of the data, because it shows us how the data adjusts over the course of the data points as well as the result.
+ ![image](https://github.com/drykvf/Bitcoin_Pred_022023/assets/121190573/bec33cef-98b2-43ad-b46a-2099fafe8db5)
+ 
+
+**This project aims to forecast future bitcoin price based on historical bitcoin price data by time series approach. In time series analysis, time is a crucial variable of the data, because it shows us how the data adjusts over the course of the data points as well as the result.**
 
 Date		: June 2, 2023
 
