@@ -8,7 +8,7 @@
 
 Date		: June 2, 2023
 
-Authors	: Hera K.
+Authors	: [Hera K.](https://www.linkedin.com/in/hera-k-80b05322a/)
  
 # 1.	TABLE OF CONTENTS
  
