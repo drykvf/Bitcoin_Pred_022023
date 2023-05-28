@@ -4,7 +4,7 @@
  ![image](https://github.com/drykvf/Bitcoin_Pred_022023/assets/121190573/bec33cef-98b2-43ad-b46a-2099fafe8db5)
  
 
-**This project aims to forecast future bitcoin price based on historical bitcoin price data by time series approach. In time series analysis, time is a crucial variable of the data, because it shows us how the data adjusts over the course of the data points as well as the result.**
+* **This project aims to forecast future bitcoin price based on historical bitcoin price data by time series approach. In time series analysis, time is a crucial variable of the data, because it shows us how the data adjusts over the course of the data points as well as the result.** *
 
 Date		: June 2, 2023
 
@@ -47,13 +47,13 @@ Bitcoin is created, distributed, traded, and stored using a decentralized ledger
 The main difference between the traditional currency and bitcoins are that traditional currency is a centralized system and bitcoins are decentralized one and peer-peer systems without any intermediary. No single person or group has control—instead, all users collectively retain control.
 In a traditional banking system, for a national transaction takes 2-3 working days, and the transaction fees will be high. In the case of international transactions, the transaction fee will be much higher, and it will take 15 days to complete the transaction. In a Cryptocurrency system like bitcoins, there is no transaction fee for both national transaction and globally. The transaction will also take place in seconds or within 24 hours, as a bitcoin system function 24/ 7. Because this blockchain system is a distributed, immutable, and decentralized ledger at its core that consists of a chain of blocks and each block contains a set of data. The blocks are linked together using cryptographic techniques and form a chronological chain of information. Decentralized blockchains are immutable, which means that the data entered is irreversible.  For Bitcoin, transactions are permanently recorded and viewable to anyone.
 
-# A.	Work System of Bitcoin
+## A.	Work System of Bitcoin
 
 i.	In short, a centralized digital network is a network in which collective data is processed and stored by a single node. Conversely, a decentralized digital network is a network in which multiple nodes store and process data. A store of value is an asset, currency, or commodity that maintains its value over a long period.  An item would be considered a store of value if its value is either stable or increases over time but doesn't depreciate. Bitcoin is proving to be a legitimate store of value is its scarcity.
 
 ii.	Cash is issued by a government, cryptocurrency is not. Crypto isn't controlled by an individual, institution, or any other authority.
 
-# B.	History of Bitcoin
+## B.	History of Bitcoin
 
 i.	Highlighted outstanding events chrolonogically.
 
@@ -71,7 +71,7 @@ i.	Highlighted outstanding events chrolonogically.
 
 	2023 – Tesla sold 75 % of its BTC holdings changed the market
 
-# C.	Difference Between Crypto & Currency
+## C.	Difference Between Crypto & Currency
 
 i.	The most important difference is centralized- decentralized system as mentioned above particularly. Difference of their storage determines the value of asset.
 
@@ -105,7 +105,7 @@ I have four targets: open, close, low and high prices. Columns in my dataframe a
 
 •	Max Volume 350,967,941.479 USD in 2021-02-26
 
-# A.	Data Preparation
+## A.	Data Preparation
 
 i.	I call my csv file with parse_date method, it changes the given string from a datetime to the desired format into the dataframe. Then I implement EDA (Exploratory Data analysis)
 
