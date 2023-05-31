@@ -4,7 +4,7 @@
  ![image](https://github.com/drykvf/Bitcoin_Pred_022023/assets/121190573/bec33cef-98b2-43ad-b46a-2099fafe8db5)
  
 
-***This project aims to forecast future bitcoin price based on historical bitcoin price data by time series approach. In time series analysis, time is a crucial variable of the data, because it shows us how the data adjusts over the course of the data points as well as the result.***
+***This project aims to forecast future bitcoin price based on historical bitcoin price data by time series approach. In time series analysis, time is a crucial variable of the data, because it shows us how the data adjusts over the course of the data points as well as the result. This analysis is not an investment advice!***
 
 Date		: June 2, 2023
 
@@ -56,7 +56,7 @@ ii.	Cash is issued by a government, cryptocurrency is not. Crypto isn't controll
 
 ## B.	History of Bitcoin
 
-i.	Highlighted outstanding events chrolonogically.
+i.	Highlighted outstanding events chronologically.
 
 	2008 – Invented by Satoshi Nakamoto
 
@@ -84,7 +84,7 @@ i.	The most important difference is centralized- decentralized system as mention
 ii.	Bitcoin is centered globally; cash is dependent on government’s policy or other lots of factors.
 iii.	Cash system has brought about significant obstacles resulting from pandemic crisis, then global economic downturn, economy has been almost over.
 
-To come up with a long-lasting solution, the world needs innovative and robust perspective for global system. Increasing demand worldwide makes Bitcoin much more attractive, though it looks like untrusty and jeopardous venture for now. Bitcoin prices are tried to be predicted by investors or majority. Bitcoin is aspiring critical up-and-coming for future as it ensures an analytical, favorable, strategic system emerging in digitalized world. it will be enabled to invest wisely.
+To come up with a long-lasting solution, the world needs innovative and robust perspective for global system. Increasing demand worldwide makes Bitcoin much more attractive, though it looks like untrusty and jeopardous venture for now. Bitcoin prices are tried to be predicted by investors or majority. Bitcoin is aspiring critical up-and-coming for future as it ensures an analytical, favorable, strategic system emerging in digitalized world. it will be enabled to plan investment wisely.
 
  ![image](https://github.com/drykvf/Bitcoin_Pred_022023/assets/121190573/794ddc98-5642-4d3f-9028-d7bb471fc429)
 
@@ -124,6 +124,28 @@ iii.	I visualize significant points to explore the data more interpretably for m
 
 iv.	I check my data stationary thanks to the p-value by Dickey Fuller test result, then I implement ACF, PACF plots before modelling and to determine which terms are needed, what kind of model I would use. (The details and graphs are available in method and model parts).
 
+I create future columns named as ‘open_change’,  ‘close_change’, ‘profit’, ‘MA50’,  ‘MA200’ for future. I will keep those columns for future modeling or furthermore. Now I will only make my analysis with closing price.
+
+		Created Future Columns 
+
+< LOAD FUTURE COLUMNS TABLE>
+
+I check normality per columns including created future columns on below histogram. Skewness is an asymmetry in the distribution of data as it does not show any kind of symmetry in continuous data.
+
+•	Open_change, close_change, profit, MA50, MA200 are created for future models.
+
+•	Open_change, close-change, profit columns look like close normal distribution whereas open, close, high, low, volume, MA50, MA200 columns are Right-Skewed data. That means they are not normal distributed.
+
+For Right-Skewed data the Mean > Median > Mode.
+
+For Left-Skewed data the Mode > Median > Mean.
+
+Most of the statistical models do not work when the data is skewed. Because the tail region of the skewed data distributions are the outliers in the data and outliers can severely damage the performance of a statistical model. The normal distribution is with no skewness like 'Bell-Curve, with no skewness for data such as the Mean = Median = Mode. I apparently see my data is non-stationary, from my all other graphs’ result as well. I should fix it to get best model performance.
+
+## ADD histogram
+
+
+
 I check whether my data is stationary or not via ACF, PACF graphs and Dickey Fuller Test. 
 ACF is an Autocorrelation Function is that the correlation between the observation at the current time spot and the observations at previous time spots. Its plot provides answers about if the observed time series white noise or random, makes us to decide if I need to use MA term (q) in my model. 
 
@@ -136,7 +158,7 @@ The below figures belong to 1st differenced of close_ts (close_diff = difference
 <img width="394" alt="image" src="https://github.com/drykvf/Bitcoin_Pred_022023/assets/121190573/c0fa7240-be52-40f7-ba2d-7773ff505fe6">
 
 
-1st Differenced Close Price Time Series - ACF & PACF!
+		1st Differenced Close Price Time Series - ACF & PACF!
 
 ![ACF   PACF](https://github.com/drykvf/Bitcoin_Pred_022023/assets/121190573/cb3390d4-5dfc-4c0f-9c97-fc59db63bc45)
 
@@ -150,7 +172,7 @@ Furthermore, it displays a blue area in the ACF and PACF plots, which depicts th
 
 Time series method as a forecast is useful tool for decision-making.  Time is a crucial variable of the data because main working principle of forecast includes projections showing how one variable affects another one over time.  As well as that helps people to evaluate the options and select the best one, prepare for contingencies to take appropriate actions.
 
-I focus on daily price at first glance, because daily open and close price causes to get profit. I don’t need to resample it because it is already my daily closing price is provided in my original dataset. Because of instability in my dataset, I can apparently see trend, seasonality on my visualization. 
+I focus on daily price at first glance, because daily open and close price causes to get profit. I don’t need to resample it because it is already my daily closing price is provided in my original dataset. Because of instability in my dataset, there is obviously trend- long-term increase or decrease in the data as seen on my visualization. It is difficult to talk about seasonality.
 
 I use naïve basic model. Then I go further with ARIMA (Autoregressive Integrated Moving Average model and SARIMAX (Seasonal Autoregressive Integrated Moving Average) method for daily closing price. 
 
@@ -162,14 +184,15 @@ i.	The naïve approach is an estimating technique in which the last period's act
 
 <img width="432" alt="image" src="https://github.com/drykvf/Bitcoin_Pred_022023/assets/121190573/cf473c38-c713-464c-a45d-1de13fb51160">
 
-RMSE test error: 17854
+RMSE test error: 14429
 
-The naïve model forecast graph is displayed above, it is not pretty much god prediction to interpret. Naive method isn’t suited for datasets with high variability. My root mean squared error is very high. 
-I should try different methods and parameters for better prediction. 
+ii.	The naïve model forecast graph is displayed above, it is a bad prediction to interpret. Naive method isn’t suited for datasets with high variability. I have extreme high RMSE score. This naive model uses the actual observed prices from the last period as the forecast for the next period, without considering any predictions or factor adjustments.
+iii.	I should try different methods and parameters for better prediction.
 
-## B.	ARIMA MODEL
 
-ARIMA model is useful in the cases where the time series is non-stationary. And the differencing is required to make the time series stationary. Most often, it happens when the data is non-stationary the predictions, we get from the ARIMA model are worse or not that accurate. I will use ARIMA model because of the non-stationary data, I need to specify AR and MA terms for my model.
+## B.	ARIMA MODEL DAILY CLOSING PRICE
+
+ARIMA model is useful in the cases where the time series is non-stationary. And the differencing is required to make the time series stationary. Most often, it happens when the data is non-stationary the predictions, we get from the ARIMA model are worse or not that accurate. I will use ARIMA model because of my non-stationary data, I need to specify AR and MA terms for my model.
 ARIMA models are denoted with the notation seasonal parameter as well as ARIMA(p, d, q). These three parameters emphasize seasonality, trend, and noise in data.
 
 •	The 1st parameter corresponds to the lagging (past values - AR term),
@@ -177,10 +200,10 @@ ARIMA models are denoted with the notation seasonal parameter as well as ARIMA(p
 •	The 3rd parameter corresponds to the white noise (for modeling shock events- MA term- moving average lags).
 
 
-<img width="432" alt="image" src="https://github.com/drykvf/Bitcoin_Pred_022023/assets/121190573/fbcdc3d5-a3a8-4315-838e-2c946619ce23">
+LOAD IMAGE 
 
 
-As seen above figure, the lowest train RMSE is 740, lowest AIC is 43073; although both AIC and RMSE train score is very high.  Let's plot and see all predictions comparing to my train and test data.
+As seen above figure, the lowest train RMSE is 748, lowest AIC is 43316; although both AIC and RMSE train score is very high. Let's plot and see all predictions comparing to my train and test data.
 
 
 <img width="432" alt="image" src="https://github.com/drykvf/Bitcoin_Pred_022023/assets/121190573/f2a933f8-f6f8-4285-b088-cf201f0a3b4e">
@@ -191,11 +214,11 @@ I will forecast the BTC price for Prediction 3. Because it has the lowest RMSE a
  
  <img width="432" alt="image" src="https://github.com/drykvf/Bitcoin_Pred_022023/assets/121190573/c489138b-b3b2-4e50-8dba-ecd46de34541">
 
-Train RMSE:740
+Train RMSE:748
 
-Test RMSE: 17673.253151608238.
+Test RMSE: 14394.902158186165.
 
-It is obviously extreme score my test error. As seen above forecast graph and error scores, ARIMA models don't work well. It explains that the model is not working well for daily prediction. 
+It is clearly extreme score my test error. As seen above forecast graph and error scores, ARIMA models don't work well. It explains that the model is not working well for daily prediction. 
 
 # 7.	MONTHLY CLOSING PRICE MODELS 
 
@@ -210,8 +233,18 @@ I use the same method for ‘Monthly Closing Price’. I resample my daily closi
 
 <img width="432" alt="image" src="https://github.com/drykvf/Bitcoin_Pred_022023/assets/121190573/4271608c-6427-41cb-8f35-bd5d99686183">
 
-I decompose my monthly closing time series into distinct components such as trend, seasonality, and noise.
-The below diagnostic plot is not perfect, I can see that the range of trend and residual is pretty much different range, I can say that trend is having variation between 20K to 40K, and most of the time residual is having the variation around until 2021, it has an extreme range after 2021.
+The below figures explain that the components are defined in order as follows: An additive model is used here, it suggests that the components are added together as follows:
+
+Level: The average value in the series.
+
+Trend: The increasing or decreasing value in the series.
+
+Seasonality: The repeating short-term cycle in the series.
+
+Noise: The random variation in the series.
+
+I can see that the trend information extracted from the series does seem reasonable. It looks apparently trend, long-term decrease in my data. The residuals are also showing periods of high variability. There is peak between 2021- 2022 years. y
+I also try out a multiplicative model and it shows almost the same results as additive model.
 
 <img width="432" alt="image" src="https://github.com/drykvf/Bitcoin_Pred_022023/assets/121190573/e61027ad-7005-40c6-80b6-4aecef8b6f8f">
 
@@ -223,88 +256,134 @@ The below diagnostic plot is not perfect, I can see that the range of trend and 
 
 ## B.	SARIMAX MODEL based on MONTHLY CLOSING PRICE
 
-SARIMAX, Seasonal Autoregressive Integrated Moving Average commonly used as a method for time series forecasting. SARIMAX models have same parameters with ARIMA (p,d,q), in addition to that they differentiate with the notation seasonality and eXogenous factors than ARIMA. SARIMAX is a seasonal equivalent model like SARIMA and Auto ARIMA.
-Some parameters combinations between 0-3 range for p, d, q ais created for Seasonal ARIMA. According to monthly closing price the best minimum AIC score to find the most optimal parameter combination among them for the best performance model. 
+SARIMAX, Seasonal Autoregressive Integrated Moving Average commonly used as a method for time series forecasting. SARIMAX models have same parameters with ARIMA (p,d,q), in addition to that they differentiate with the notation seasonality and eXogenous factors than ARIMA. SARIMAX is a seasonal equivalent model like SARIMA and Auto ARIMA. These three parameters are seasonality, trend, and noise in data.
+•	My data is getting stationary with 1.st differencing. So, I will get d=1
+•	My data is non-stationary, so I will not use p, d, or q =0, it should be p,d,q != 0
+•	So, I check the parameter combinations for p and q between 1-4 and d=1
+•	Seasonal parameter = 12
 
-The lowest AIC score:  10.0
-Parameter: ARIMA (1, 0, 1) x (0, 1, 2, 12) 12  
-This is the lowest combination, but this doesn’t work, because of singular matrix.
+C.	Grid Search for SARIMA parameters
 
-The second lowest AIC score: 1078.75
-Parameter: ARIMA (2, 2, 2) x (2, 2, 1, 12) 12 
-I use these parameters for my SARIMAX model, SAR_2 below.
-
-<img width="432" alt="image" src="https://github.com/drykvf/Bitcoin_Pred_022023/assets/121190573/c63f44b1-7ae1-4fa3-81b2-ac157c4757ad">
+<LOAD IMAGE>
 
 
-**SAR_2 MODEL**
+I will create SARIMAX models for below parameters from my grid search result..
+•	SAR_1 = ARIMA(1, 1, 1)x(1, 1, 2, 12)12 - AIC:12.0
+•	SAR_2 = ARIMA(3, 1, 2)x(2, 1, 2, 12)12 - AIC:253.00985753516215
+•	SAR_3 = ARIMA(2, 1, 3)x(1, 1, 3, 12)12 - AIC:1034.0861380207261
+•	SAR_4 = ARIMA(1, 1, 2)x(1, 1, 3, 12)12 - AIC:1052.2431059321195
+•	SAR_5 = ARIMA(2, 1, 0)x(2, 2, 1, 12)12 - AIC:1073.7815701575475
 
-<img width="432" alt="image" src="https://github.com/drykvf/Bitcoin_Pred_022023/assets/121190573/010acf3d-6f81-45a8-86dc-94fd00153063">
+
+<LOAD IMAGE>
 
 
-RMSE Train error: 3404.50 ( Expected Root Mean Squared Error )
-AIC SAR model : 1078.75  ( Akaike Information Criteria)
-RMSE Test error: 3379.18  (Forecast Root Mean Squared Error) 
+RMSE Train error: 3368 ( Expected Root Mean Squared Error )
+AIC SAR model     : 1073 ( Akaike Information Criteria)
+RMSE Test error  : 3005 (Forecast Root Mean Squared Error) 
 
-<img width="432" alt="image" src="https://github.com/drykvf/Bitcoin_Pred_022023/assets/121190573/720fabc2-1706-427b-a70a-b9782e2b98a2">
+< LOAD DIAGNOSTIC IMAGE>
 
-I will compare predicted BTC price to real BTC prices of the time series, to explore the accuracy of my forecasts. Then I will set forecasts to start 2021-12-31 to the end of the data
+The above diagnostic plot is not perfect, however, my model diagnostics suggest that the model residuals are almost close to normally distributed in comparison to the SAR_2, SAR_4. As seen on theoretical quantiles, majority points are sitting on the straight line. I can see almost bell curve on the histogram plus estimated density.
+I will compare predicted BTC price to real BTC prices of the time series, to explore the accuracy of my forecasts. Then I will set forecasts to start 2022-01-31 to the end of the data
 Actual data: close price monthly
-Prediction: 2021-12-31 and further
+Prediction: 2022-01-31 and further
 
-<img width="432" alt="image" src="https://github.com/drykvf/Bitcoin_Pred_022023/assets/121190573/cefb81a2-fd45-40a5-acb4-f27bfcd26e07">
 
-The above line graph displays that the Actual values is compared to the rolling forecast prediction. My forecast aligns with the actual values well. It shows a downward trend starts at the last of 2021, after 2023 it starts to be upward. In above graph, it is obviously seen the forecasting line is almost lying on the given values for this model. I don't even require the differencing method. Using this model now, I can predict the future values too.
+<LOAD PREDICTION GRAPH">
 
-AIC SAR model: 1078.75 ( Akaike Information Criteria)
-RMSE Train error: 3404.50 (Expected Root Mean Squared Error)
-RMSE Test error: 3379.18 (Forecast Root Mean Squared Error) 
+The above line graph displays that the Actual values is compared to the rolling forecast prediction. My forecast aligns with the actual values well. It shows a downward trend starts at the beginning of 2022, after 2023 it starts to be upward. In above graph, it is obviously seen the forecasting line is almost lying on the given values for this model. I don't even require the differencing method. Using this model now, I can predict the future values too.
+
+AIC SAR model.     : 1073 ( Akaike Information Criteria)
+RMSE Train error: 3368 (Expected Root Mean Squared Error)
+RMSE Test error   : 3005  (Forecast Root Mean Squared Error) 
+
 
 Forecast for 2024- 1 Yearly BTC Price (USD)
 
-![Forecast 2024 BTC](https://github.com/drykvf/Bitcoin_Pred_022023/assets/121190573/ae1d4e03-e377-48cc-b0c0-058cff72a123)
+<LOAD THE IMAGE)
 
 
 Forecast 3 Yearly BTC Price (USD)
 
-![Forecast 3 Yearly BTC](https://github.com/drykvf/Bitcoin_Pred_022023/assets/121190573/489252b2-a506-4a02-9ea6-d6003aa890ff)
+<LOAD THE IMAGE)
 
 
 Forecast 8 Yearly BTC Price (USD)
 
-![Forecast 8 Yearly BTC](https://github.com/drykvf/Bitcoin_Pred_022023/assets/121190573/1889f23a-3791-49b7-912b-4f9bd6efaa38)
+<LOAD THE IMAGE)
 
 
 # 8.	EVALUATION
-A high-quality forecast features the accurate, timely, clear & understandable, relevant specifications.
-Accurate is important, enough to get a good evaluation for determination about plans or how we can take a position.
-A good forecast gives the information when needed, so it is a timely result, gives idea when the situation will occur.
+
+Time series generally focus on the prediction of real values, called regression problems. A high-quality forecast features the accurate, timely, clear & understandable, relevant specifications. Accurate is important, enough to get a good evaluation for determination about plans or how we can take a position. A good forecast gives the information when needed, so it is a timely result, gives idea when the situation will occur.
+To evaluate the performance of all models I concern RMSE. Because RMSE is the most common metric used to measure the accuracy of a time-series forecasting model. RMSE is a good measure of how accurately the model predicts the response, and is the most important criterion for fit if the main purpose of the model is prediction. It is an absolute measure in the same scale as the target, more sensitive to outliers. It is calculated by taking the square root of the mean of the squared differences between the actual values and the predictions of the model. The RMSE both for training and test sets should be very similar to build a good model. If the RMSE for the test set is much higher than that of the training set, it is likely badly overfitting the data.
+
+This can be calculated by using the sqrt() math function on the mean squared error calculated using the mean_squared_error() scikit-learn function.
+
+RMSE = sqrt(mean_squared_error(expected, predictions))
+
+Models comparison:
+
+SAR_1 = ARIMA(1, 1, 1)x(1, 1, 2, 12)12 - AIC:12.0
+It is singular matrix result for SAR_1 model.
+
+SAR_2 = ARIMA(3, 1, 2)x(2, 1, 2, 12)12 - AIC:253.00985753516215
+Diagnostic results display that there is no normality.
+
+SAR_3 = ARIMA(2, 1, 3)x(1, 1, 3, 12)12 - AIC:1034.0861380207261
+Length of endogenous variable must be larger the the number of lags used in the model and the number of observations burned in the log-likelihood calculation.
+
+SAR_4 = ARIMA(1, 1, 2)x(1, 1, 3, 12)12 - AIC:1052.2431059321195
+The difference of RMSE train and test score is getting higher for SAR_2 and SAR_4 models.
+
+SAR_5 = ARIMA(2, 1, 0)x(2, 2, 1, 12)12 - AIC:1073.7815701575475
+RMSE: 3368, Forecast RMSE: 3005 The best optimal and interpretable result belongs to SAR_5 model. It looks like very high as 3368 RMSE score. The weighted average error between the predictions and actuals in this dataset 3005, which is likely not bad value given that the average actual price in dataset is 3368. It is the most optimal score according to the diagnostic graphics and my dataset for this analysis. My actual price tends to be over thousands dollars.
+
 I report both the RMSE and AIC score in my project to compare and evaluate my models. 
 
+Method Name	Model Name	RMSE 	AIC	Comments
+Naïve Model	Naïve_forecast	14429	-	RMSE is very high
+ARIMA Model	Ar_1	765	43397	
+ARIMA Model	Ar_2	761	43378	
+ARIMA Model	Ar_3	748	43316	
+ARIMA forecast	Ar_3 forecast	14394	-	Overfitting
+SARIMAX	SAR_1	2.04	12.0	RMSE is low but, singular matrix
+SARIMAX	SAR_2	2.52	253	No density, residual is linear, q-q is not normal.
+SARIMAX	SAR_3	3089	1034	Length of endogenous variable must be larger the the number of lags used in the model and the number of observations burned in the log-likelihood calculation.
+SARIMAX	SAR_4	3150	1052	A slightly difference than Sar_4. Q-Q is not sitting on the straight line as much as SAR_4 model.
+SARIMAX (Final Model)	SAR_5	3368	1073	The diagnostic plot displays the best normality result
+Forecast SARIMAX	Forecasat - after 2022-01-31	3005		
+	
+
+9.	FURTHERMORE
+
+This analysis is accomplished by time series method that the price is only based on change the price over time as mentioned above. Bitcoin acts as more of a commodity being used to store value, so we could concern other determiner factors as well for BTC prices.
+•	The supply of Bitcoin and the market’s demand for it
+•	The cost of producing a bitcoin through the mining process
+•	The number of competing cryptocurrencies
+•	Regulations governing its sale and use.
+•	Media and news
+
+10.	RECOURCES
+
+•	https://finance.yahoo.com/quote/BTC-USD/
+•	https://bitcoin.org/en/how-it-works
+•	https://en.wikipedia.org/wiki/History_of_bitcoin 
+•	https://www.investopedia.com/tech/what-determines-value-1-bitcoin/
+•	https://www.fidelity.com/learning-center/trading-investing/crypto-vs-cash
+
+11.	REPOSITORY STRUCTURE
+
+[Data]
+│    ├── BTC-USD.csv (https://finance.yahoo.com/quote/BTC-USD/history/)
+├── [Images]
+├── [Model]
+├── .gitignore
+├── Bitcoin Price Pred-HeraK.ipynb
+├── LICENSE
+├── Presentation.pdf
+├── README.md
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
->>>>>>> 0786893532723fc3cade02e349540baecf730576
