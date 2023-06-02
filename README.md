@@ -403,13 +403,22 @@ This analysis is accomplished by time series method that the price is only based
 
 [Data]
 │    ├── BTC-USD.csv (https://finance.yahoo.com/quote/BTC-USD/history/)
+
 ├── [Images]
+
 ├── [Model]
+
 ├── .gitignore
+
 ├── Bitcoin Price Pred-HeraK.ipynb
+
 ├── LICENSE
+
 ├── Presentation.pdf
+
 ├── README.md
+
+├── environment.yml
 
 
 
